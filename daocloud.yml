@@ -5,7 +5,7 @@ install:
  - npm install
  # 安装hexo deploy工具
  - npm install hexo-deployer-git --save
- - npm
+
 before_script:  
  # 新建存放私钥目录
  - mkdir ~/.ssh
@@ -26,18 +26,18 @@ before_script:
  # 添加私钥
  - ssh-add ~/.ssh/id_rsa
 
- # 删除存放私钥和配置的目录及文件，不知道为什么要删掉，如果为了安全性，集成完成后不就自动销毁了吗？
+ # 删除存放私钥和配置的目录及文件
  - rm -rf .daocloud
 
- # 配置git全局的用户名和邮件，没有配置不能clone
- - git config --global user.name "neoFelhz"
- - git config --global user.email "neofelhz@gmail.com"
+ # 配置git全局的用户名和邮件
+ - git config --global user.name "{你的用户名}"
+ - git config --global user.email "{你的密码}"
 
 script:
  # 清除之前生成的文件
  - hexo clean
 
- # 生成要发布的静态博客文件
+ # 生成静态博客文件
  - hexo g
 
  # 根据Hexo配置的发布方式和地址进行发布
