@@ -6,12 +6,14 @@ test:
   before_script:
   - mkdir ~/.ssh
   - mv .daocloud/id_rsa ~/.ssh/id_rsa
+  - mv .daocloud/ssh_config ~/.ssh/config
   - chmod 600 ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/config
   - eval $(ssh-agent)
   - ssh-add ~/.ssh/id_rsa
   - rm -rf .daocloud
   - git config --global user.name "{Your Username for git}"
-  - git config --global user.email "Your E-mail for git"
+  - git config --global user.email "{Your Email Address for git}"
   script:
   - hexo clean
   - hexo g
