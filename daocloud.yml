@@ -1,46 +1,23 @@
 # Daocloud.yml
 image: {手动构建镜像以后的hexo镜像拉取地址}
 install:
- # 安装npm依赖
  - npm install
- # 安装hexo deploy工具
  - npm install hexo-deployer-git --save
 
 before_script:  
- # 新建存放私钥目录
  - mkdir ~/.ssh
-
- # 将私钥放入目录
  - mv .daocloud/id_rsa ~/.ssh/id_rsa
- 
- # 将ssh配置文件放入目录
  - mv .daocloud/ssh_config ~/.ssh/config
- 
- # 修改私钥和配置文件为可读权限
  - chmod 600 ~/.ssh/id_rsa
  - chmod 600 ~/.ssh/config
-
- # 启动ssh-agent
  - eval $(ssh-agent)
-
- # 添加私钥
  - ssh-add ~/.ssh/id_rsa
-
- # 删除存放私钥和配置的目录及文件
  - rm -rf .daocloud
-
- # 配置git全局的用户名和邮件
  - git config --global user.name "{你的用户名}"
  - git config --global user.email "{你的密码}"
 
 script:
- # 清除之前生成的文件
  - hexo clean
-
- # 生成静态博客文件
  - hexo g
-
- # 根据Hexo配置的发布方式和地址进行发布
  - hexo d
- # 删除私钥文件夹
  - rm -rf ~/.ssh/
